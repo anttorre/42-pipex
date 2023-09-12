@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:16:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/11 15:43:26 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/12 12:11:31 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,4 @@ int	save_arguments(t_data *d, char **argv, int argc)
 }
 
 //file1 cmd1 cmd2 cmd3 cmd4 cm5 file2
+//awk -F ',' '{print $1, $3}' datos.txt

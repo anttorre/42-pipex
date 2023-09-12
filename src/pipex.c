@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:22 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/11 15:41:39 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:26:14 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	init_struct(data);
 	if (save_arguments(data, argv, argc) == EXIT_FAILURE)
 		return (free_all(data, argc - 3), EXIT_FAILURE);
+	/* BORRAR */
 	int i = -1;
 	while (data->cmds[++i])
 	{
@@ -41,14 +42,6 @@ int	main(int argc, char **argv)
 		ft_printf("\n");
 	}
 	ft_printf("%s\n%s\n", data->file1, data->file2);
-/* 	char *args[4];
-	int fd = open("example.txt", O_WRONLY | O_CREAT, 0755);
-
-	args[0] = "ls";
-	args[1] = "-l";
-	args[2] = "-a";
-	args[3] = NULL;
-	dup2(fd, STDOUT_FILENO);
-	execve("/bin/ls", args, NULL); */
+	/* HASTA AQUI */
 	return (free_all(data, argc - 3), EXIT_SUCCESS);
 }
