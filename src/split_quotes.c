@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:45:33 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/13 13:12:27 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:37:47 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,18 @@ static char	**split_loop(char *str, char d)
 		return (NULL);
 	while (*str)
 	{
-		while ((*str == d || *str == '\'' || *str == '\"') && *str != '\0')
+		iterator_quotes(&str, d, &aux, &flag_quote);
+		while ((*str != aux && flag_quote)
+			|| (*str != d && !flag_quote && *str))
 		{
-			if (*str == '\'' || *str == '\"')
-			{
-				aux = *str;
-				flag_quote = !flag_quote;
-			}
-			str++;
-		}
-		if (flag_quote)
-		{
-			while (*str != aux && *str)
-			{
-				wl = word_length(str, d, flag_quote, aux);
-				new_str[++i] = ft_calloc(wl + 1, sizeof(char));
-				if (!new_str[i])
-					return (free_split_quotes(new_str), NULL);
-				new_str[i] = ft_substr(str, 0, wl);
-				str += wl;
-			}
-		}
-		else
-		{
-			while (*str != d && *str)
-			{
-				wl = word_length(str, d, flag_quote);
-				new_str[++i] = ft_calloc(wl + 1, sizeof(char));
-				if (!new_str[i])
-					return (free_split_quotes(new_str), NULL);
-				new_str[i] = ft_substr(str, 0, wl);
-				str += wl;
-			}
+			wl = word_length(str, d, flag_quote, aux);
+			new_str[++i] = ft_substr(str, 0, wl);
+			if (!new_str[i])
+				return (free_split_quotes(new_str), NULL);
+			str += wl;
 		}
 	}
-	return (new_str);
+	return (new_str[++i] = NULL, new_str);
 }
 
 char	**ft_split_quotes(char *str, char d)
@@ -74,8 +51,16 @@ char	**ft_split_quotes(char *str, char d)
 	return (arr);
 }
 //  awk -F ',' '{print $1, $3}' datos.txt
+void ft_leaks()
+{
+	system("leaks -q split_quotes");
+}
 
 int main()
 {
+	atexit(ft_leaks);
 	char **i = ft_split_quotes("awk -F ',' '{print $1, $3}' datos.txt", ' ');
+	if (!i)
+		return (1);
+	return (free_split_quotes(i), 0);
 }

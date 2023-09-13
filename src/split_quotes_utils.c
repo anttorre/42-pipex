@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:21:43 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/13 13:13:00 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:37:27 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void	free_split_quotes(char **arr)
 		while (arr[i])
 			free(arr[i++]);
 		free(arr);
+	}
+}
+
+
+void	iterator_quotes(char **str, char d, char *aux, int *flag_quote)
+{
+	while ((**str == d || **str == '\'' || **str == '\"') && **str != '\0')
+	{
+		if (**str == '\'' || **str == '\"')
+		{
+			*aux = **str;
+			*flag_quote = !*flag_quote;
+		}
+		(*str)++;
 	}
 }
 
@@ -71,21 +85,7 @@ int	word_length(char *str, char d, int flag, char c)
 
 	flag_quote[0] = flag;
 	flag_quote[1] = 0;
-	while ((*str == d || *str == '\'' || *str == '\"') && *str != '\0')
-	{
-		if (*str == '\'' || *str == '\"')
-		{
-			aux = *str;
-			flag_quote[0] = !flag_quote[0];
-		}
-		str++;
-	}
-	word_length2(str, d, flag_quote, aux);
-	return (flag_quote[1]);
-}
-
-static	void	word_length2(char *str, char d, int *flag_quote, char aux)
-{
+	aux = c;
 	if (flag_quote[0])
 	{
 		while (*str != aux && *str)
@@ -102,4 +102,5 @@ static	void	word_length2(char *str, char d, int *flag_quote, char aux)
 			str++;
 		}
 	}
+	return (flag_quote[1]);
 }
