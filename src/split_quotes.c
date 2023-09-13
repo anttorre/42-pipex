@@ -6,35 +6,25 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:45:33 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/12 15:51:56 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:12:27 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static	void	words_count2(char **str, char d, int flag, char aux);
-
-void	free_split_quotes(char **arr)
+static char	**split_loop(char *str, char d)
 {
-	int	i;
-
-	if (arr != NULL)
-	{
-		i = 0;
-		while (arr[i])
-			free(arr[i++]);
-		free(arr);
-	}
-}
-
-static size_t	words_count(char *str, char d)
-{
-	size_t	count;
+	char	**new_str;
+	int		i;
 	int		flag_quote;
 	char	aux;
+	int		wl;
 
-	count = 0;
+	i = -1;
 	flag_quote = 0;
+	new_str = ft_calloc(words_count(str, d) + 1, sizeof(char *));
+	if (!new_str)
+		return (NULL);
 	while (*str)
 	{
 		while ((*str == d || *str == '\'' || *str == '\"') && *str != '\0')
@@ -46,64 +36,30 @@ static size_t	words_count(char *str, char d)
 			}
 			str++;
 		}
-		if (*str != '\'' && *str != '\"' && *str != d)
-			count++;
-		words_count2(&str, d, flag_quote, aux);
-	}
-	return (count);
-}
-
-static	void	words_count2(char **str, char d, int flag, char aux)
-{
-	if (flag)
-		while (**str != aux && **str)
-			(*str)++;
-	else
-		while (**str != d && **str)
-			(*str)++;
-}
-
-static	int	word_length(char *str, char d)
-{
-	int	i;
-	int		flag_quote;
-	char	aux;
-
-	flag_quote = 0;
-	i = 0;
-	while ((str[i] != d && str[i] != '\0')
+		if (flag_quote)
 		{
-			if (*str == '\'' || *str == '\"')
+			while (*str != aux && *str)
 			{
-				aux = *str;
-				flag_quote = !flag_quote;
+				wl = word_length(str, d, flag_quote, aux);
+				new_str[++i] = ft_calloc(wl + 1, sizeof(char));
+				if (!new_str[i])
+					return (free_split_quotes(new_str), NULL);
+				new_str[i] = ft_substr(str, 0, wl);
+				str += wl;
 			}
-			str++;
-			if (flag_quote)
-				while (*str != aux && *str)
-					str++;
-			else
-				while (*str != d && *str)
-					i++;
 		}
-	return (i);
-}
-
-static char	**split_loop(char *str, char d)
-{
-	char	**new_str;
-	int		i;
-	int		flag_quote;
-	char	aux;
-
-	i = -1;
-	flag_quote = 0;
-	new_str = ft_calloc(words_count(str, d) + 1, sizeof(char *));
-	if (!new_str)
-		return (NULL);
-	while (*str)
-	{
-		
+		else
+		{
+			while (*str != d && *str)
+			{
+				wl = word_length(str, d, flag_quote);
+				new_str[++i] = ft_calloc(wl + 1, sizeof(char));
+				if (!new_str[i])
+					return (free_split_quotes(new_str), NULL);
+				new_str[i] = ft_substr(str, 0, wl);
+				str += wl;
+			}
+		}
 	}
 	return (new_str);
 }
@@ -118,3 +74,8 @@ char	**ft_split_quotes(char *str, char d)
 	return (arr);
 }
 //  awk -F ',' '{print $1, $3}' datos.txt
+
+int main()
+{
+	char **i = ft_split_quotes("awk -F ',' '{print $1, $3}' datos.txt", ' ');
+}
