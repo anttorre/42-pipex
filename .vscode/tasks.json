@@ -8,8 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "../libft/libft.a",
-				"../src/split_quotes.c",
-				"../src/split_quotes_utils.c",
+				"../src/*.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

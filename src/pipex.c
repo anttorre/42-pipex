@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:22 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/12 15:26:14 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:05:40 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	main(int argc, char **argv)
 	{
 		int j = 0;
 		while (data->cmds[i][j])
-		{
-				ft_printf("%s", data->cmds[i][j++]);
-		}
+				ft_printf("%s ", data->cmds[i][j++]);
 		ft_printf("\n");
 	}
 	ft_printf("%s\n%s\n", data->file1, data->file2);

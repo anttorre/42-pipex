@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:16:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/12 12:11:31 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:05:13 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,6 @@ void	free_all(t_data *data, int len)
 		free(data);
 }
 
-/* static void	free_part_cmd(char **cmd, int index)
-{
-	if (cmd != NULL)
-	{
-		while (--index >= 0)
-			free(cmd[index]);
-		free(cmd);
-	}
-} */
-
-/* int	save_arguments(t_data *d, char **argv, int argc)
-{
-	d->file1 = ft_calloc(ft_strlen(argv[1]) + 1, sizeof(char));
-	if (!d->file1)
-		return (EXIT_FAILURE);
-	ft_strlcpy(d->file1, argv[1], ft_strlen(argv[1]) + 1);
-	d->file2 = ft_calloc(ft_strlen(argv[argc - 1]) + 1, sizeof(char));
-	if (!d->file2)
-		return (EXIT_FAILURE);
-	ft_strlcpy(d->file2, argv[argc - 1], ft_strlen(argv[argc - 1]) + 1);
-	d->i = 1;
-	d->cmd = ft_calloc(argc - 3, sizeof(char *));
-	if (!d->cmd)
-		return (EXIT_FAILURE);
-	while (++d->i < argc - 1)
-	{
-		d->cmd[++d->j] = ft_calloc(ft_strlen(argv[d->i]) + 1, sizeof(char));
-		if (!d->cmd[d->j])
-			return (free_part_cmd(d->cmd, d->j), EXIT_FAILURE);
-		ft_strlcpy(d->cmd[d->j], argv[d->i], ft_strlen(argv[d->i]) + 1);
-	}
-	return (EXIT_SUCCESS);
-} */
-
 int	save_arguments(t_data *d, char **argv, int argc)
 {
 	d->file1 = ft_calloc(ft_strlen(argv[1]) + 1, sizeof(char));
@@ -89,7 +55,7 @@ int	save_arguments(t_data *d, char **argv, int argc)
 		return (EXIT_FAILURE);
 	while (++d->i < argc - 1)
 	{
-		d->cmds[d->j] = ft_split(argv[d->i], ' ');
+		d->cmds[d->j] = ft_split_quotes(argv[d->i], ' ');
 		if (!d->cmds[d->j++])
 			return (EXIT_FAILURE);
 	}
@@ -97,5 +63,4 @@ int	save_arguments(t_data *d, char **argv, int argc)
 	return (EXIT_SUCCESS);
 }
 
-//file1 cmd1 cmd2 cmd3 cmd4 cm5 file2
 //awk -F ',' '{print $1, $3}' datos.txt

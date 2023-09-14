@@ -5,7 +5,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["file1", "ls -l", "cat -e", "file2"],
+            "args": ["file1", "ls -l", "awk -F ',' 'print \"Hola:\" $3'", "file2"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

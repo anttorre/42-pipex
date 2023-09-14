@@ -30,7 +30,7 @@ PUSH_SWAP = pipex.a
 
 LIB = ar rcs
 
-SRCS = src/pipex.c src/initialize_struct.c src/arguments.c
+SRCS = src/pipex.c src/initialize_struct.c src/arguments.c src/pipex_utils.c src/split_quotes_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

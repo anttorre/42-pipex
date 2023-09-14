@@ -6,14 +6,11 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:21:43 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/13 14:37:27 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:04:31 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-static	void	words_count2(char **str, char d, int flag, char aux);
-static	void	word_length2(char *str, char d, int *flag_quote, char aux);
 
 void	free_split_quotes(char **arr)
 {
@@ -29,7 +26,7 @@ void	free_split_quotes(char **arr)
 }
 
 
-void	iterator_quotes(char **str, char d, char *aux, int *flag_quote)
+static void	iterator_quotes(char **str, char d, char *aux, int *flag_quote)
 {
 	while ((**str == d || **str == '\'' || **str == '\"') && **str != '\0')
 	{
@@ -52,30 +49,17 @@ size_t	words_count(char *str, char d)
 	flag_quote = 0;
 	while (*str)
 	{
-		while ((*str == d || *str == '\'' || *str == '\"') && *str != '\0')
-		{
-			if (*str == '\'' || *str == '\"')
-			{
-				aux = *str;
-				flag_quote = !flag_quote;
-			}
-			str++;
-		}
+		iterator_quotes(&str, d, &aux, &flag_quote);
 		if (*str != '\'' && *str != '\"' && *str != d)
 			count++;
-		words_count2(&str, d, flag_quote, aux);
+		if (flag_quote)
+			while (*str != aux && *str)
+				str++;
+		else
+			while (*str != d && *str)
+				str++;
 	}
 	return (count);
-}
-
-static	void	words_count2(char **str, char d, int flag, char aux)
-{
-	if (flag)
-		while (**str != aux && **str)
-			(*str)++;
-	else
-		while (**str != d && **str)
-			(*str)++;
 }
 
 int	word_length(char *str, char d, int flag, char c)
@@ -103,4 +87,33 @@ int	word_length(char *str, char d, int flag, char c)
 		}
 	}
 	return (flag_quote[1]);
+}
+
+char	**split_loop(char *s, char d)
+{
+	char	**new_str;
+	int		i;
+	int		flag_quote;
+	char	aux;
+	int		wl;
+
+	i = -1;
+	flag_quote = 0;
+	new_str = ft_calloc(words_count(s, d) + 1, sizeof(char *));
+	if (!new_str)
+		return (NULL);
+	while (*s)
+	{
+		iterator_quotes(&s, d, &aux, &flag_quote);
+		while ((*s != aux && flag_quote) || (*s != d && !flag_quote && *s))
+		{
+			wl = word_length(s, d, flag_quote, aux);
+			new_str[++i] = ft_calloc(wl + 1, sizeof(char));
+			if (!new_str[i])
+				return (free_split_quotes(new_str), NULL);
+			ft_strlcpy(new_str[i], s, wl + 1);
+			s += wl;
+		}
+	}
+	return (new_str[++i] = NULL, new_str);
 }
