@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:21:43 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/14 12:04:31 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:58:38 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_split_quotes(char **arr)
 		free(arr);
 	}
 }
-
 
 static void	iterator_quotes(char **str, char d, char *aux, int *flag_quote)
 {

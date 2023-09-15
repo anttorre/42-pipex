@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:22 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/14 12:05:40 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:07:36 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int	main(int argc, char **argv)
 	}
 	ft_printf("%s\n%s\n", data->file1, data->file2);
 	/* HASTA AQUI */
+	execve("/usr/bin/awk", data->cmds[1], NULL);
 	return (free_all(data, argc - 3), EXIT_SUCCESS);
 }
