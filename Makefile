@@ -18,7 +18,7 @@ NAME_BONUS = pipex_bonus
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIBFT_PATH = ./libft
 
@@ -63,7 +63,7 @@ $(LIBFT):
 
 all : $(NAME)
 
-bonus : $(NAME_BONUS)
+#bonus : $(NAME_BONUS)
 
 clean:
 			@echo "$(RED)$(BOLD)Cleaning objects from pipex...$(RESET)"

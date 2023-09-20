@@ -6,37 +6,34 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:16:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/14 12:05:13 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:39:44 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 #include <signal.h>
 
-void	free_all(t_data *data, int len)
+void	free_all(t_data *data)
 {
 	int		i;
 	int		j;
 
-	(void) len;
 	i = -1;
-	if (data->cmds != NULL)
+	while (data->cmds[++i] != NULL)
 	{
-		while (data->cmds[++i] != NULL)
-		{
-			j = 0;
-			while (data->cmds[i][j])
-				free(data->cmds[i][j++]);
-			free(data->cmds[i]);
-		}
-		free(data->cmds);
+		j = 0;
+		while (data->cmds[i][j])
+			free(data->cmds[i][j++]);
+		free(data->cmds[i]);
 	}
-	if (data->file1 != NULL)
-		free(data->file1);
-	if (data->file2 != NULL)
-		free(data->file2);
-	if (data != NULL)
-		free(data);
+	free(data->cmds);
+	free(data->file1);
+	free(data->file2);
+	i = -1;
+	while (data->paths[++i])
+		free(data->paths[i]);
+	free(data->paths);
+	free(data);
 }
 
 int	save_arguments(t_data *d, char **argv, int argc)
