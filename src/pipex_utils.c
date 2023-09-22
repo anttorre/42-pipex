@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:45:39 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/22 16:27:55 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:28:51 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_exec(t_data *d)
 		if (file == -1)
 			exit(EXIT_FAILURE);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
-			strerror(_);
+			exit(EXIT_FAILURE);
 		if (dup2(file, STDOUT_FILENO) == -1)
 			exit(EXIT_FAILURE);
 		close(file);
