@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:55 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/20 12:22:54 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/21 12:57:02 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 
 typedef struct s_data
@@ -27,8 +28,8 @@ typedef struct s_data
 	char	**paths;
 	char	*path1;
 	char	*path2;
-	char	*p_check1;
-	char	*p_check2;
+	char	*p_chk1;
+	char	*p_chk2;
 	int		i;
 	int		j;
 }			t_data;
@@ -43,5 +44,6 @@ int			word_length(char *str, char d, int flag, char c);
 size_t		words_count(char *str, char d);
 void		free_split_quotes(char **arr);
 int			get_paths(t_data *d, int argc);
+void		ft_exec(t_data *d);
 
 #endif

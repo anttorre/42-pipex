@@ -6,12 +6,20 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:16:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/19 15:39:44 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:01:37 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 #include <signal.h>
+
+static	void	free_paths(t_data *d)
+{
+	free(d->p_chk1);
+	free(d->p_chk2);
+	free(d->path1);
+	free(d->path2);
+}
 
 void	free_all(t_data *data)
 {
@@ -33,6 +41,7 @@ void	free_all(t_data *data)
 	while (data->paths[++i])
 		free(data->paths[i]);
 	free(data->paths);
+	free_paths(data);
 	free(data);
 }
 
