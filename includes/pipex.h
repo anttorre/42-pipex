@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:55 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/21 12:57:02 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:48:07 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h>
+# include <errno.h>
 
 typedef struct s_data
 {
