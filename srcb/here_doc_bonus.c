@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_struct.c                                :+:      :+:    :+:   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 14:56:57 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/26 14:27:13 by anttorre         ###   ########.fr       */
+/*   Created: 2023/10/03 12:18:03 by anttorre          #+#    #+#             */
+/*   Updated: 2023/10/03 15:16:05 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
-void	init_struct(t_data *data)
+int	check_here_doc(char **argv, t_data *data)
 {
-	data->paths = NULL;
-	data->path1 = NULL;
-	data->path2 = NULL;
-	data->p_chk1 = NULL;
-	data->p_chk2 = NULL;
-	data->cmds = NULL;
-	data->file1 = 0;
-	data->file2 = 0;
-	data->i = 0;
-	data->j = 0;
+	if (argv && !ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")))
+	{
+		data->here_doc = 1;
+		return (6);
+	}
+	return (5);
 }

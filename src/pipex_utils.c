@@ -6,11 +6,17 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:45:39 by anttorre          #+#    #+#             */
-/*   Updated: 2023/09/25 12:12:49 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:47:29 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	msg_err(char *str)
+{
+	perror(str);
+	exit(EXIT_FAILURE);
+}
 
 char	**ft_split_quotes(char *str, char d)
 {
@@ -39,7 +45,7 @@ static	int	get_paths2(t_data *d)
 		ft_strlcpy(d->paths[d->i], d->p_chk2, ft_strlen(d->p_chk2) + 1);
 	}
 	else
-		return (EXIT_FAILURE);
+		msg_err("File");
 	return (EXIT_SUCCESS);
 }
 
@@ -71,56 +77,24 @@ void	ft_exec(t_data *d)
 {
 	int		fd[2];
 	pid_t	pid;
-	int		file;
 
 	if (pipe(fd) == -1)
-	{
-		perror("Error: The channel for the pipe was not created.\n");
-		exit(EXIT_FAILURE);
-	}
+		msg_err("Pipe");
 	pid = fork();
 	if (pid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
+		msg_err("Fork");
 	if (pid == 0)
-	{
-		close(fd[1]);
-		file = open(d->file2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (file == -1)
-		{
-			ft_printf("Error: %s\n",strerror(errno));
-			exit(EXIT_FAILURE);
-		}
-		if (dup2(fd[0], STDIN_FILENO) == -1)
-			exit(EXIT_FAILURE);
-		if (dup2(file, STDOUT_FILENO) == -1)
-			exit(EXIT_FAILURE);
-		close(file);
-		if (execve(d->paths[1], d->cmds[1], NULL) == -1)
-		{
-			ft_printf("Error: %s\n",strerror(errno));
-			exit(EXIT_FAILURE);
-		}
-		exit(EXIT_SUCCESS);
-	}
+		child(fd, d);
 	else
 	{
 		close(fd[0]);
-		file = open (d->file1, O_RDONLY);
-		if (file == -1)
-			exit(EXIT_FAILURE);
-		if (dup2(file, STDIN_FILENO) == -1)
-			exit(EXIT_FAILURE);
+		if (dup2(d->file1, STDIN_FILENO) == -1)
+			msg_err("Command dup2");
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			exit(EXIT_FAILURE);
-		close(file);
+			msg_err("Command dup2");
+		close(d->file1);
 		if (execve(d->paths[0], d->cmds[0], NULL) == -1)
-		{
-			ft_printf("Error: %s\n",strerror(errno));
-			exit(EXIT_FAILURE);
-		}
-		exit(EXIT_SUCCESS);
+			msg_err("Command");
+		waitpid(pid, NULL, 0);
 	}
 }

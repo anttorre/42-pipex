@@ -8,7 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "../libft/libft.a",
-                "../src/*.c",
+                "../srcb/*.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

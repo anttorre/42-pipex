@@ -5,7 +5,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["../datos.txt", "ls -l", "awk -F ' ' 'print \"Permisos:\" $1'", "../file2.txt"],
+            "args": ["here_doc", "EOF", "ls -l", "awk -F ' ' 'print \"Permisos:\" $1'", "outfile"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

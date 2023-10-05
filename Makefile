@@ -24,37 +24,41 @@ LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 
-PUSH_SWAP = pipex.a
+PIPEX = pipex.a
 
-#PUSH_SWAP_BONUS = pipex_bonus.a
+PIPEX_BONUS = pipex_bonus.a
 
 LIB = ar rcs
 
-SRCS = src/pipex.c src/initialize_struct.c src/arguments.c src/pipex_utils.c src/split_quotes_utils.c
+SRCS = src/pipex.c src/initialize_struct.c src/arguments.c\
+	   src/pipex_utils.c src/split_quotes_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-#SRCS_BONUS = srcb/checker.c
+SRCS_BONUS = srcb/pipex_bonus.c srcb/initialize_struct_bonus.c\
+			 srcb/arguments_bonus.c srcb/pipex_utils_bonus.c\
+			 srcb/split_quotes_utils_bonus.c srcb/here_doc_bonus.c\
+			 srcb/ft_free_bonus.c srcb/pipex_utils_bonus_2.c\
 
-#OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 $(NAME) :	$(OBJS) $(LIBFT)
 			@echo "$(MAGENTA)$(BOLD)Compiling pipex...$(RESET)"
-			@$(LIB) $(PUSH_SWAP) $(OBJS)
-			@$(CC) $(CFLAGS) $(PUSH_SWAP) $(LIBFT) -o $(NAME)
+			@$(LIB) $(PIPEX) $(OBJS)
+			@$(CC) $(CFLAGS) $(PIPEX) $(LIBFT) -o $(NAME)
 			@echo "$(CYAN)$(BOLD)Done$(RESET)"
 
 $(OBJS):	src/%.o : src/%.c 
 			@$(CC) $(CFLAGS) -c $< -o $@
 
-#$(NAME_BONUS): $(OBJS_BONUS) $(OBJS) $(LIBFT)
-#			@echo "$(YELLOW)$(BOLD)Compiling push_swap bonus...$(RESET)"
-#			@$(LIB) $(PUSH_SWAP_BONUS) $(OBJS_BONUS) $(OBJS)
-#			@rm -rf src/push_swap.o
-#			@$(CC) $(CFLAGS) $(PUSH_SWAP_BONUS) $(LIBFT) -o $(NAME_BONUS)
-#			@echo "$(CYAN)$(BOLD)Done$(RESET)"
+$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
+			@echo "$(YELLOW)$(BOLD)Compiling push_swap bonus...$(RESET)"
+			@$(LIB) $(PIPEX_BONUS) $(OBJS_BONUS)
+			@rm -rf src/push_swap.o
+			@$(CC) $(CFLAGS) $(PIPEX_BONUS) $(LIBFT) -o $(NAME_BONUS)
+			@echo "$(CYAN)$(BOLD)Done$(RESET)"
 
-#$(OBJS_BONUS):	srcb/%.o : srcb/%.c
+$(OBJS_BONUS):	srcb/%.o : srcb/%.c
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
@@ -63,7 +67,7 @@ $(LIBFT):
 
 all : $(NAME)
 
-#bonus : $(NAME_BONUS)
+bonus : $(NAME_BONUS)
 
 clean:
 			@echo "$(RED)$(BOLD)Cleaning objects from pipex...$(RESET)"
@@ -73,7 +77,7 @@ clean:
 
 fclean:
 			@echo "$(RED)$(BOLD)Cleaning all files from pipex...$(RESET)"
-			@rm -f $(NAME) $(NAME_BONUS) $(OBJS) $(OBJS_BONUS) $(LIBFT) $(PUSH_SWAP) $(PUSH_SWAP_BONUS)
+			@rm -f $(NAME) $(NAME_BONUS) $(OBJS) $(OBJS_BONUS) $(LIBFT) $(PIPEX) $(PIPEX_BONUS)
 			@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 			@make fclean -s -C $(LIBFT_PATH)
 
@@ -81,4 +85,4 @@ re : fclean all
 
 pipe : all clean
 
-.PHONY : all re fclean clean bonus pipe	
+.PHONY : all re fclean clean bonus

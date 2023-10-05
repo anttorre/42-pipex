@@ -3,6 +3,12 @@
 		"libft.h": "c",
 		"get_next_line_bonus.h": "c",
 		"sstream": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"array": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c",
+		"pipex_bonus.h": "c"
 	}
 }
