@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:56:57 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/05 15:13:30 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:24:59 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	init_struct(t_data *data)
 	data->j = 0;
 	data->k = -1;
 	data->n_cmd = 0;
+	data->line = NULL;
 }

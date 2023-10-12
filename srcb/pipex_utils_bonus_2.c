@@ -6,11 +6,18 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:05:56 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/12 13:09:24 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:29:18 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
+
+void ft_father(pid_t pid, int *fd)
+{
+	waitpid(pid, NULL, 0);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+}
 
 void	ft_exec(t_data *d, char **argv, int argc)
 {
@@ -51,10 +58,6 @@ void	ft_exec(t_data *d, char **argv, int argc)
 				msg_err("Child Command Execution", d->here_doc);
 		}
 		else
-		{
-			waitpid(pid, NULL, 0);
-			close(fd[1]);
-			dup2(fd[0], STDIN_FILENO);
-		}
+			ft_father(pid, fd);
 	}
 }
