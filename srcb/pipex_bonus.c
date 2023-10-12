@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:52:57 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/05 16:29:12 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:10:29 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	main(int argc, char **argv, char **env)
 		return (error("env paths not saved."), free_all(data), EXIT_FAILURE);
 	if (get_paths(data))
 		return (error("Path error."), free_all(data), EXIT_FAILURE);
-	for(int i=0; data->paths[i]; i++)
-		ft_printf("%s\n", data->paths[i]);
-	data->i = -1;
-	while (data->cmds[++data->i])
-		ft_exec(data, argv, argc);
+	ft_exec(data, argv, argc);
 	return (free_all(data), EXIT_SUCCESS);
 }

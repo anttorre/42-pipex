@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:21:43 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/02 12:55:10 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:41:58 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	iterator_quotes(char **str, char d, char *aux, int *flag_quote)
 		{
 			*aux = **str;
 			*flag_quote = !*flag_quote;
+			if (*(*str + 1) == ' ')
+			{
+				(*str)++;
+				break ;
+			}
 		}
 		(*str)++;
 	}

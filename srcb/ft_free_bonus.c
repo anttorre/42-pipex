@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:18:18 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/05 15:22:33 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:00:09 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,9 @@ static void	free_all_2(t_data *data)
 			free(data->env_paths[i]);
 		free(data->env_paths);
 	}
+	if (data->here_doc)
+		unlink("here_doc.tmp");
+	close(data->file1);
+	close(data->file2);
+	free(data->line);
 }

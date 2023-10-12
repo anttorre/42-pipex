@@ -1,2 +1,3 @@
-mi mono amelio y
+mi,mono,amelio,y
 yo no sabemos nada
+mono

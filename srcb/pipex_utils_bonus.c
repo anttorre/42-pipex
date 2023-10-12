@@ -6,14 +6,16 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:45:39 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/05 16:00:33 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:10:13 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void	msg_err(char *str)
+void	msg_err(char *str, int here_doc)
 {
+	if (here_doc)
+		unlink("here_doc.tmp");
 	perror(str);
 	exit(EXIT_FAILURE);
 }
