@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:55 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/12 14:58:59 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:45:11 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct s_data
 	char	**env_paths;
 	char	*pchk;
 	int		here_doc;
-	char 	*line;
+	char	*line;
+	int		fd[2];
+	int		stdin_copy;
+	pid_t	pid;
 	int		n_cmd;
 	int		i;
 	int		j;

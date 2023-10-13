@@ -52,9 +52,8 @@ $(OBJS):	src/%.o : src/%.c
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
-			@echo "$(YELLOW)$(BOLD)Compiling push_swap bonus...$(RESET)"
+			@echo "$(YELLOW)$(BOLD)Compiling pipex bonus...$(RESET)"
 			@$(LIB) $(PIPEX_BONUS) $(OBJS_BONUS)
-			@rm -rf src/push_swap.o
 			@$(CC) $(CFLAGS) $(PIPEX_BONUS) $(LIBFT) -o $(NAME_BONUS)
 			@echo "$(CYAN)$(BOLD)Done$(RESET)"
 

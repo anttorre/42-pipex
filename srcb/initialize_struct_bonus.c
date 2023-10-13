@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:56:57 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/12 15:24:59 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:57:28 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,7 @@ void	init_struct(t_data *data)
 	data->k = -1;
 	data->n_cmd = 0;
 	data->line = NULL;
+	ft_memset(data->fd, 0, sizeof(data->fd));
+	data->pid = 0;
+	data->stdin_copy = 0;
 }

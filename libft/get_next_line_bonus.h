@@ -6,14 +6,14 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:51:02 by anttorre          #+#    #+#             */
-/*   Updated: 2023/06/28 12:36:43 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:31:18 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 50
 # endif
 # include <stdlib.h>
 # include <unistd.h>
