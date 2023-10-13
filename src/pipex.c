@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:53:22 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/02 12:51:13 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:59:06 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	if (data->file2 == -1)
 		msg_err("File");
 	if (save_arguments(data, argv, argc) == EXIT_FAILURE)
-		return (ft_putendl_fd("Error: args not saved", 2), 
+		return (ft_putendl_fd("Error: args not saved", 2),
 			free_all(data), EXIT_FAILURE);
 	if (get_paths(data, argc) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);
