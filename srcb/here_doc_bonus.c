@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:18:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/13 12:57:59 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:46:18 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	here_doc(t_data *d, char **argv)
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
-		d->line = get_next_line(stdin_copy);
+		d->line = get_next_line(d->stdin_copy);
 		if (!d->line)
 			msg_err("Line", d->here_doc);
 		if (!ft_strncmp(argv[2], d->line, ft_strlen(argv[2])))
