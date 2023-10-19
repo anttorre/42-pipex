@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:18:03 by anttorre          #+#    #+#             */
-/*   Updated: 2023/10/13 14:46:18 by anttorre         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:00:29 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	here_doc(t_data *d, char **argv)
 	}
 	close(d->file1);
 	d->file1 = open("here_doc.tmp", O_RDONLY);
-	d->file2 = open(argv[d->n_cmd + 2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	d->file2 = open(argv[d->n_cmd + 2], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (d->file1 < 0 || d->file2 < 0)
 		msg_err("Heredoc", d->here_doc);
 }
